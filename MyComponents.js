@@ -1,6 +1,6 @@
-import { Text, TextInput, View, Pressable } from "react-native"
-import { styles } from './styles'
-import { styleConcat } from './styles'
+import { Text, TextInput, View, Pressable, Image, Switch } from "react-native"
+import { useState } from 'react';
+import { styles, styleConcat } from './styles'
 
 export function TextLabelInput(props) {
     var viewStyle = styleConcat(styles.input_container, props['style'] || styles.input_container)
@@ -26,5 +26,28 @@ export function Button(props) {
             onPress={props['onPress']}
             style={buttonStyle}
         ><Text style={textStyle}>{props['title'] || "Button"}</Text></Pressable>
+    );
+}
+
+export function ProfileImage(props) {
+    var style = styleConcat(styles.profile_image, props['style'] || {})
+    return (
+        <Image
+            source={{uri: props["uri"] || "https://i.stack.imgur.com/l60Hf.png"}}
+            style={style}
+        />
+    );
+}
+
+export function CheckInput(props) {
+    const [value, setValue] = useState(props["value"] || false)
+    return (
+        <Switch
+            onValueChange={() => setValue(!value)}
+            value={value}
+            trackColor={{false: props["FalseTrackColor"] || "#767577", true: props["TrueTrackColor"] || "rgb(0, 150, 136)"}}
+            thumbColor={props["thumbColor"] || "#f4f3f4"}
+            activeThumbColor={props["thumbColor"] || "#f4f3f4"}
+        />
     );
 }
