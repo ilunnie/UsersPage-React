@@ -1,5 +1,5 @@
 import { View, Text } from "react-native"
-import { styles, styleConcat } from './styles'
+import { styles, styleConcat } from './components/styles'
 
 export default function Cadastro(props) {
     return (
